@@ -42,3 +42,4 @@ part 'src/skeleton/slot/skeleton_slot_animation.dart';
 
 part 'src/dragon_bones.dart';
 part 'src/dragon_bones_parser_json4.dart';
+part 'src/dragon_bones_parser_json5.dart';

@@ -1,0 +1,87 @@
+package main
+
+type Foo struct {
+	Armature []struct {
+		Animation []struct {
+			Bone []struct {
+				Frame []struct {
+					Duration  int64  `json:"duration"`
+					Event     string `json:"event"`
+					Transform struct {
+						ScX float64 `json:"scX"`
+						ScY float64 `json:"scY"`
+						SkX float64 `json:"skX"`
+						SkY float64 `json:"skY"`
+						X   int64   `json:"x"`
+						Y   int64   `json:"y"`
+					} `json:"transform"`
+					TweenEasing int64 `json:"tweenEasing"`
+				} `json:"frame"`
+				Name string `json:"name"`
+			} `json:"bone"`
+			Duration  int64         `json:"duration"`
+			Ffd       []interface{} `json:"ffd"`
+			Frame     []interface{} `json:"frame"`
+			Name      string        `json:"name"`
+			PlayTimes int64         `json:"playTimes"`
+			Slot      []struct {
+				Frame []struct {
+					Color struct {
+						AM int64 `json:"aM"`
+					} `json:"color"`
+					DisplayIndex int64 `json:"displayIndex"`
+					Duration     int64 `json:"duration"`
+					TweenEasing  int64 `json:"tweenEasing"`
+					Z            int64 `json:"z"`
+				} `json:"frame"`
+				Name string `json:"name"`
+			} `json:"slot"`
+		} `json:"animation"`
+		Bone []struct {
+			Length    int64  `json:"length"`
+			Name      string `json:"name"`
+			Parent    string `json:"parent"`
+			Transform struct {
+				ScX int64   `json:"scX"`
+				ScY int64   `json:"scY"`
+				SkX float64 `json:"skX"`
+				SkY float64 `json:"skY"`
+				X   float64 `json:"x"`
+				Y   float64 `json:"y"`
+			} `json:"transform"`
+		} `json:"bone"`
+		DefaultActions []struct {
+			GotoAndPlay string `json:"gotoAndPlay"`
+		} `json:"defaultActions"`
+		FrameRate int64         `json:"frameRate"`
+		Ik        []interface{} `json:"ik"`
+		Name      string        `json:"name"`
+		Skin      []struct {
+			Name string `json:"name"`
+			Slot []struct {
+				Display []struct {
+					Name      string `json:"name"`
+					Transform struct {
+						SkX float64 `json:"skX"`
+						SkY float64 `json:"skY"`
+						X   float64 `json:"x"`
+						Y   float64 `json:"y"`
+					} `json:"transform"`
+					Type string `json:"type"`
+				} `json:"display"`
+				Name string `json:"name"`
+			} `json:"slot"`
+		} `json:"skin"`
+		Slot []struct {
+			DisplayIndex int64  `json:"displayIndex"`
+			Name         string `json:"name"`
+			Parent       string `json:"parent"`
+			Z            int64  `json:"z"`
+		} `json:"slot"`
+		Type string `json:"type"`
+	} `json:"armature"`
+	FrameRate int64  `json:"frameRate"`
+	IsGlobal  int64  `json:"isGlobal"`
+	Name      string `json:"name"`
+	Version   string `json:"version"`
+}

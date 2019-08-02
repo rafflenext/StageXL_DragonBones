@@ -1,0 +1,17 @@
+package main
+
+type Foo struct {
+	SubTexture []struct {
+		FrameHeight int64  `json:"frameHeight"`
+		FrameWidth  int64  `json:"frameWidth"`
+		FrameX      int64  `json:"frameX"`
+		FrameY      int64  `json:"frameY"`
+		Height      int64  `json:"height"`
+		Name        string `json:"name"`
+		Width       int64  `json:"width"`
+		X           int64  `json:"x"`
+		Y           int64  `json:"y"`
+	} `json:"SubTexture"`
+	ImagePath string `json:"imagePath"`
+	Name      string `json:"name"`
+}

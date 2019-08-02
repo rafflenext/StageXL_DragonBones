@@ -22,10 +22,11 @@ class DragonBones {
     var version = data["version"];
     if (version == "4.0") return _DragonBonesParserJson4.parse(data);
     if (version == "4.5") return _DragonBonesParserJson4.parse(data);
+    if (version == "5.5") return _DragonBonesParserJson5.parse(data);
     throw new ArgumentError("Unsupported format.");
   }
 
-  //---------------------------------------------------------------------------
+  //--x-------------------------------------------------------------------------
 
   Armature getArmature(String armatureName) {
     for(var armature in armatures) {
