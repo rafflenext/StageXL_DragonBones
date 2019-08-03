@@ -1,55 +1,59 @@
 part of stagexl_dragonbones;
 
 class _DragonBonesParserJson5 {
-
-  // Format: http://edn.egret.com/cn/index.php/article/index/id/338
+  // Format: http://developer.egret.com/en/github/egret-docs/DB/dbLibs/5foramt/index.html
 
   static DragonBones parse(Map data) {
-    return new DragonBones(
-        _getString(data, "name", ""),
-        _getString(data, "version", "0.0"),
-        _getInt(data, "frameRate", 24),
-        _getBool(data, "isGlobal", false),
-        _getList<Armature>(data, "armature", _parseArmature));
+    DragonBones x = DragonBones.Format5()
+      ..name = _getString(data, "name", "")
+      ..version = _getString(data, "version", "0.0")
+      ..frameRate = _getInt(data, "frameRate", 24)
+      ..armatures = _getList<Armature>(data, "armature", _parseArmature);
+    return x;
   }
 
   //---------------------------------------------------------------------------
 
   static Armature _parseArmature(Map data) {
     return new Armature(
-        _getString(data, "name", ""),
-        _getList<Bone>(data, "bone", _parseBone),
-        _getList<Slot>(data, "slot", _parseSlot),
-        _getList<Skin>(data, "skin", _parseSkin),
-        _getList<Animation>(data, "animation", _parseAnimation));
+      _getString(data, "name", ""),
+      _getList<Bone>(data, "bone", _parseBone),
+      _getList<Slot>(data, "slot", _parseSlot),
+      _getList<Skin>(data, "skin", _parseSkin),
+      _getList<Animation>(data, "animation", _parseAnimation),
+    );
   }
 
   static Bone _parseBone(Map data) {
     return new Bone(
-        _getString(data, "name", ""),
-        _getString(data, "parent", ""),
-        _getInt(data, "length", 0),
-        _getTransform(data, "transform"));
+      _getString(data, "name", ""),
+      _getString(data, "parent", ""),
+      _getInt(data, "length", 0),
+      _getTransform(data, "transform"),
+    );
   }
 
   static Slot _parseSlot(Map data) {
     return new Slot(
-        _getString(data, "name", ""),
-        _getString(data, "parent", null),
-        _getInt(data, "displayIndex", 0),
-        _getInt(data, "z", 0));
+      _getString(data, "name", ""),
+      _getString(data, "parent", null),
+      _getInt(data, "displayIndex", 0),
+      _getInt(data, "z", 0),
+    );
   }
 
   static Skin _parseSkin(Map data) {
     return new Skin(
-        _getString(data, "name", ""),
-        _getList<SkinSlot>(data, "slot", _parseSkinSlot));
+      _getString(data, "name", ""),
+      _getList<SkinSlot>(data, "slot", _parseSkinSlot),
+    );
   }
 
   static SkinSlot _parseSkinSlot(Map data) {
     return new SkinSlot(
-        _getString(data, "name", ""),
-        _getList<Display>(data, "display", _parseDisplay));
+      _getString(data, "name", ""),
+      _getList<Display>(data, "display", _parseDisplay),
+    );
   }
 
   static Display _parseDisplay(Map data) {
@@ -72,32 +76,36 @@ class _DragonBonesParserJson5 {
 
   static Animation _parseAnimation(Map data) {
     return new Animation(
-        _getString(data, "name", ""),
-        _getInt(data, "duration", 0),
-        _getInt(data, "playTimes", 0),
-        _getList<BoneAnimation>(data, "bone", _parseAnimationBone),
-        _getList<SlotAnimation>(data, "slot", _parseAnimationSlot),
-        _getList<MeshAnimation>(data, "ffd", _parseAnimationMesh));
+      _getString(data, "name", ""),
+      _getInt(data, "duration", 0),
+      _getInt(data, "playTimes", 0),
+      _getList<BoneAnimation>(data, "bone", _parseAnimationBone),
+      _getList<SlotAnimation>(data, "slot", _parseAnimationSlot),
+      _getList<MeshAnimation>(data, "ffd", _parseAnimationMesh),
+    );
   }
 
   static BoneAnimation _parseAnimationBone(Map data) {
     return new BoneAnimation(
-        _getString(data, "name", ""),
-        _getList<BoneAnimationFrame>(data, "frame", _parseAnimationBoneFrame));
+      _getString(data, "name", ""),
+      _getList<BoneAnimationFrame>(data, "frame", _parseAnimationBoneFrame),
+    );
   }
 
   static SlotAnimation _parseAnimationSlot(Map data) {
     return new SlotAnimation(
-        _getString(data, "name", ""),
-        _getList<SlotAnimationFrame>(data, "frame", _parseAnimationSlotFrame));
+      _getString(data, "name", ""),
+      _getList<SlotAnimationFrame>(data, "frame", _parseAnimationSlotFrame),
+    );
   }
 
   static MeshAnimation _parseAnimationMesh(Map data) {
     return new MeshAnimation(
-        _getString(data, "name", ""),
-        _getString(data, "slot", ""),
-        _getString(data, "skin", ""),
-        _getList<MeshAnimationFrame>(data, "frame", _parseAnimationMeshFrame));
+      _getString(data, "name", ""),
+      _getString(data, "slot", ""),
+      _getString(data, "skin", ""),
+      _getList<MeshAnimationFrame>(data, "frame", _parseAnimationMeshFrame),
+    );
   }
 
   static BoneAnimationFrame _parseAnimationBoneFrame(Map data) {
@@ -115,9 +123,7 @@ class _DragonBonesParserJson5 {
     var zOrder = _getInt(data, "z", 0);
     var colorTransform = _getColorTransform(data, "color");
     var curve = _getCurve(data, "curve");
-    return new SlotAnimationFrame(
-        duration, curve, easing,
-        colorTransform, displayIndex, zOrder);
+    return new SlotAnimationFrame(duration, curve, easing, colorTransform, displayIndex, zOrder);
   }
 
   static MeshAnimationFrame _parseAnimationMeshFrame(Map data) {
@@ -221,7 +227,4 @@ class _DragonBonesParserJson5 {
     if (value == 1 || value == "true") return true;
     throw new StateError("Invalid type for key '$key'");
   }
-
 }
-
-

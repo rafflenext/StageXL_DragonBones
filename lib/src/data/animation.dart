@@ -1,7 +1,6 @@
 part of stagexl_dragonbones;
 
 class Animation {
-
   final String name;
   final int duration;
   final int playTimes;
@@ -11,12 +10,13 @@ class Animation {
   final List<MeshAnimation> meshAnimations;
 
   Animation(
-      this.name,
-      this.duration,
-      this.playTimes,
-      this.boneAnimations,
-      this.slotAnimations,
-      this.meshAnimations);
+    this.name,
+    this.duration,
+    this.playTimes,
+    this.boneAnimations,
+    this.slotAnimations,
+    this.meshAnimations,
+  );
 
   //---------------------------------------------------------------------------
 
@@ -36,8 +36,7 @@ class Animation {
 
   MeshAnimation getMeshAnimation(String slotName, String skinName) {
     for (var animation in meshAnimations) {
-      if (animation.slotName == slotName &&
-          animation.skinName == skinName) return animation;
+      if (animation.slotName == slotName && animation.skinName == skinName) return animation;
     }
     return null;
   }

@@ -1,7 +1,6 @@
 part of stagexl_dragonbones;
 
 class Skeleton extends InteractiveObject implements Animatable {
-
   final Armature armature;
 
   final List<SkeletonBone> _skeletonBones = new List<SkeletonBone>();
@@ -16,7 +15,6 @@ class Skeleton extends InteractiveObject implements Animatable {
   //---------------------------------------------------------------------------
 
   Skeleton(this.armature, this.frameRate) {
-
     var map = new Map<String, SkeletonBone>();
 
     // this assumes that armature bones are sorted by depth
@@ -39,7 +37,6 @@ class Skeleton extends InteractiveObject implements Animatable {
   //---------------------------------------------------------------------------
 
   bool advanceTime(num deltaTime) {
-
     double deltaFrameTime = deltaTime.toDouble() * frameRate;
 
     for (var skeletonBone in _skeletonBones) {
@@ -56,7 +53,6 @@ class Skeleton extends InteractiveObject implements Animatable {
   //---------------------------------------------------------------------------
 
   void setSkin(TextureAtlas textureAtlas, [String skinName = ""]) {
-
     var skin = this.armature.getSkin(skinName);
     if (skin == null) throw new ArgumentError("skinName");
 
@@ -88,7 +84,6 @@ class Skeleton extends InteractiveObject implements Animatable {
   //---------------------------------------------------------------------------
 
   void play(String animationName) {
-
     var animation = this.armature.getAnimation(animationName);
     if (animation == null) throw new ArgumentError("animationName");
 
@@ -116,7 +111,6 @@ class Skeleton extends InteractiveObject implements Animatable {
       var sa = new SkeletonDisplayMeshAnimation(animation, meshAnimation);
       skeletonSlot.addSkeletonMeshAnimation(sa);
     }
-
   }
 
   //---------------------------------------------------------------------------
@@ -124,7 +118,7 @@ class Skeleton extends InteractiveObject implements Animatable {
   @override
   Rectangle<num> get bounds {
     // TODO implement bounds
-    return new Rectangle<num>(0.0, 0.0, 0.0 ,0.0);
+    return new Rectangle<num>(0.0, 0.0, 0.0, 0.0);
   }
 
   @override
@@ -135,7 +129,6 @@ class Skeleton extends InteractiveObject implements Animatable {
 
   @override
   void render(RenderState renderState) {
-
     // TODO: correct implementation of colorTransform for slots
 
     if (showSlots) {
@@ -164,6 +157,4 @@ class Skeleton extends InteractiveObject implements Animatable {
       }
     }
   }
-
 }
-
