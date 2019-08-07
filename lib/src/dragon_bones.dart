@@ -1,35 +1,33 @@
 part of stagexl_dragonbones;
 
 class DragonBones {
-
   final String name;
   final String version;
   final int frameRate;
   final bool isGlobal;
   final List<Armature> armatures;
 
-  DragonBones(
-      this.name,
-      this.version,
-      this.frameRate,
-      this.isGlobal,
-      this.armatures);
+  DragonBones(this.name, this.version, this.frameRate, this.isGlobal, this.armatures);
 
   //---------------------------------------------------------------------------
 
   static DragonBones fromJson(String jsonSource) {
     var data = json.decode(jsonSource);
-    var version = data["version"];
-    if (version == "4.0") return _DragonBonesParserJson4.parse(data);
-    if (version == "4.5") return _DragonBonesParserJson4.parse(data);
-    if (version == "5.5") return _DragonBonesParserJson5.parse(data);
+    String ver = data["version"];
+    //todo add error handling
+    double version = double.parse(ver);
+    assert(version is double);
+    print(version);
+    if (version == 4.0) return _DragonBonesParserJson4.parse(data);
+    if (version == 4.5) return _DragonBonesParserJson4.parse(data);
+    if (version > 5 && version < 6) return _coaToolsParserJson.parse(data);
     throw new ArgumentError("Unsupported format.");
   }
 
   //--x-------------------------------------------------------------------------
 
   Armature getArmature(String armatureName) {
-    for(var armature in armatures) {
+    for (var armature in armatures) {
       if (armature.name == armatureName) {
         return armature;
       }
@@ -42,5 +40,4 @@ class DragonBones {
     if (armature == null) throw new ArgumentError("armatureName");
     return new Skeleton(armature, this.frameRate);
   }
-
 }
